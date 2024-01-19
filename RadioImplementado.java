@@ -1,40 +1,40 @@
-public class RadioImplementado implements Radio{
+public class RadioImplementado implements Radio {
     private boolean encendido;
-    private boolean frecuenciaAM;
+    private String frecuencia;
     private double emisora;
-    private Frequency[] emisorasGuardadas;
+    private double[] emisorasGuardadas;
 
-    public RadioImplementado(){
+    public RadioImplementado() {
         this.encendido = false;
-        this.frecuenciaAM = true;
+        this.frecuencia = "AM";
         this.emisora = 530;
-        this.emisorasGuardadas = new Frequency[12];
+        this.emisorasGuardadas = new double[12];
     }
 
     @Override
-    public void encender(){
+    public void encender() {
         this.encendido = true;
     }
 
     @Override
-    public void apagar(){
+    public void apagar() {
         this.encendido = false;
     }
 
     @Override
-    public void cambiarFrecuencia(){
-        this.frecuenciaAM = !this.frecuenciaAM;
-        if(this.frecuenciaAM == true){
-            this.emisora = 530;
-        } else {
+    public void cambiarFrecuencia() {
+        if (this.frecuencia.equals("AM")) {
+            this.frecuencia = "FM";
             this.emisora = 87.9;
-            
+        } else {
+            this.frecuencia = "AM";
+            this.emisora = 530;
         }
     }
 
     @Override
-    public void avanzarEmisora(){
-        if (this.frecuenciaAM == true) {
+    public void avanzarEmisora() {
+        if (this.frecuencia.equals("AM")) {
             this.emisora += 10;
             if (this.emisora > 1610) {
                 this.emisora = 530;
@@ -49,22 +49,19 @@ public class RadioImplementado implements Radio{
 
     @Override
     public void guardarEmisora(int boton) {
-        this.emisorasGuardadas[boton - 1] = new Frequency(this.frecuenciaAM, this.emisora);
+        this.emisorasGuardadas[boton - 1] = this.emisora;
     }
+
     @Override
     public void seleccionarEmisoraGuardada(int boton) {
-        Frequency savedFrequency = this.emisorasGuardadas[boton - 1];
-        if (savedFrequency != null) {
-            this.frecuenciaAM = savedFrequency.getFrequencyType();
-            this.emisora = savedFrequency.getFrequencyValue();
+        double emisoraGuardada = this.emisorasGuardadas[boton - 1];
+        if (emisoraGuardada != 0) {
+            this.emisora = emisoraGuardada;
+            if (this.emisora < 108) {
+                this.frecuencia = "FM";
+            } else {
+                this.frecuencia = "AM";
+            }
         }
     }
-
-    @Override
-    public void cambiarEmisora() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'cambiarEmisora'");
-    }
 }
-    
-

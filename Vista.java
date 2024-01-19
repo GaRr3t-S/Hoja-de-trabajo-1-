@@ -1,8 +1,10 @@
-public class Vista {
-    private ControladorRadio controlador;
+import java.util.Scanner;
 
-    public Vista() {
-        this.controlador = new ControladorRadio();
+public class Vista {
+    private Controlador controlador;
+
+    public Vista(Controlador controlador) {
+        this.controlador = controlador;
     }
 
     public void iniciar() {
