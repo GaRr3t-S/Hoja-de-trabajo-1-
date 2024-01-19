@@ -1,4 +1,4 @@
-public class VistaRadio {
+public class Vista {
     private ControladorRadio controlador;
 
     public VistaRadio() {
