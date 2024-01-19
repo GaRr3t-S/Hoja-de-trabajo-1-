@@ -1,6 +1,6 @@
 public class App {
     public static void main(String[] args) {
-        VistaRadio vista = new VistaRadio();
+        Vista vista = new Vista();
         vista.iniciar();
     }
 }
