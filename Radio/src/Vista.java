@@ -1,7 +1,7 @@
 public class Vista {
     private ControladorRadio controlador;
 
-    public VistaRadio() {
+    public Vista() {
         this.controlador = new ControladorRadio();
     }
 
